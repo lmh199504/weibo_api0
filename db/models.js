@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose')
-
+mongoose.set('useCreateIndex', true);//写在下面代码前面
 
 // 用户数据表
 const userSchema = mongoose.Schema({
