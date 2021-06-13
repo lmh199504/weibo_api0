@@ -3,8 +3,10 @@
 
 const login = require('./login')
 const register = require('./register')
+const testToken = require('./testToken')
 
 module.exports = {
 	login,
-	register
+	register,
+	testToken
 }

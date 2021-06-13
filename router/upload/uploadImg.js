@@ -4,8 +4,6 @@ const OSS = require('ali-oss')
 
 module.exports = async (ctx, next) => {
 
-	console.log(ctx.request.files)
-	
 	const files = ctx.request.files
 	// 文件路径
 	var filePath = files.file.path;

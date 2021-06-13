@@ -6,6 +6,7 @@ const app = new Koa();
 const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 
+const checkToken = require('./utils/checkToken')
 require('./utils/colors');
 const router = require('./router/index')
 const {
@@ -42,6 +43,8 @@ app.use(async (ctx, next) => {
 	const ms = Date.now() - start;
 	ctx.set('X-Response-Time', `${ms}ms`);
 });
+// 验证token
+app.use(checkToken)
 
 app.use(router.routes()).use(router.allowedMethods());
 // 监听端口

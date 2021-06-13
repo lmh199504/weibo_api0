@@ -14,6 +14,8 @@ router.post('/user/login', user.login)
 router.post('/user/register', user.register)
 // 上传文件
 router.post('/uploadimg', uploadImg)
+// 测试一下token
+router.post('/testToken', user.testToken)
 
 
 module.exports = router;

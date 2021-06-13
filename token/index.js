@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const koajwt = require('koa-jwt')
 // 创建 token 类
 class Jwt {
     constructor(data) {
@@ -9,6 +10,7 @@ class Jwt {
         this._id = null; // 用户自定义 存放userid
         this._date = null; // 过期时间
         this._creatDate = null; // 创建时间
+        this.myjwt = undefined;
     }
     // 重新生成 token
     refreshToken() {
@@ -20,6 +22,13 @@ class Jwt {
             exp: created + 60 * 30, // 过期时间 
             iat: created, // 创建时间
         }, cert, {algorithm: 'RS256'});
+        this.myjwt = koajwt(
+            {
+                data,
+                exp: created + 60 * 30, // 过期时间 30 分钟
+                iat: created, // 创建时间
+            }, cert, {algorithm: 'RS256'}
+        );
         return token;
     }
     //生成token
@@ -35,6 +44,13 @@ class Jwt {
             exp: created + 60 * 30, // 过期时间 30 分钟
             iat: created, // 创建时间
         }, cert, {algorithm: 'RS256'});
+        this.myjwt = koajwt(
+            {
+                data,
+                exp: created + 60 * 30, // 过期时间 30 分钟
+                iat: created, // 创建时间
+            }, cert, {algorithm: 'RS256'}
+        );
         return token;
     }
 
