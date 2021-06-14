@@ -25,6 +25,7 @@ module.exports = async (ctx,next) => {
                 resMsg: 'token已过期请重新登录。'
             }
         } else {
+            console.log(request)
             await next();
         }
     }
