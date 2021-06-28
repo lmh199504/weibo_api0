@@ -16,6 +16,7 @@ router.post('/user/register', user.register)
 router.post('/uploadimg', uploadImg)
 // 测试一下token
 router.post('/testToken', user.testToken)
-
+// 获取用户信息
+router.post('/user/userInfo', user.userInfo)
 
 module.exports = router;

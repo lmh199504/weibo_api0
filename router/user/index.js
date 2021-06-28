@@ -4,9 +4,10 @@
 const login = require('./login')
 const register = require('./register')
 const testToken = require('./testToken')
-
+const userInfo = require('./userInfo')
 module.exports = {
 	login,
 	register,
-	testToken
+	testToken,
+	userInfo
 }
