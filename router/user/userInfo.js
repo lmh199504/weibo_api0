@@ -2,7 +2,7 @@ const Jwt = require('../../token/index.js')
 const jwt = new Jwt()
 const { UserModel } = require('../../db/models')
 const { filter } = require('../../db/filter.js')
-const { sueccessCode } = require('../code')
+const { successCode, errorCode } = require('../code')
 module.exports = async (ctx, next) => {
 	let token = ctx.request.headers["authorization"]
 	const request = jwt.verifyToken(token)
@@ -11,8 +11,15 @@ module.exports = async (ctx, next) => {
 	}, filter)
 	console.log(userInfo)
 	ctx.status = 200;
-	ctx.body = {
-		code: sueccessCode,
-		data: userInfo
+	if(userInfo) {
+		ctx.body = {
+			code: successCode,
+			data: userInfo
+		}
+	} else {
+		ctx.body = {
+			code: errorCode,
+			resMsg: '用户不存在。'
+		}
 	}
 }
