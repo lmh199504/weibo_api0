@@ -57,7 +57,8 @@ module.exports = async (ctx, next) => {
 	} else {
 		const saveData = await new UserModel({
 			username,
-			password: md5(password)
+			password: md5(password),
+			headerImg: header
 		}, filter).save()
 		const token = jwt.generateToken({ user_id: saveData._id })
 		delete saveData._doc.password
